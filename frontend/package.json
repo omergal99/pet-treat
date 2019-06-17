@@ -1,6 +1,5 @@
 {
-  "homepage": "https://omergal99.github.io/react-chat",
-  "name": "react-chat",
+  "name": "pet-treat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

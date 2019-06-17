@@ -1,6 +1,6 @@
 // import StorageService from './StorageService';
 
-// const USER_KEY = 'user-react-chat';
+// const USER_KEY = 'user-pet-treat';
 var user = _randomName();
 
 function getUser() {

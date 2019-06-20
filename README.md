@@ -1,5 +1,7 @@
 # pet-treat
 
+An family aplication for my dog messi
+
 ## Explanation - store with Redux
 
 ### USE Node version v10.15.3

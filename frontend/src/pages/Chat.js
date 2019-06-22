@@ -39,6 +39,11 @@ class Chat extends Component {
     }
   }
 
+  async getDogs(){
+    var dogs = await actions.loadDogs();
+    console.log(dogs)
+  }
+
   render() {
     var userName = this.props.currUser;
     var userTyping = this.props.userTyping;
@@ -53,6 +58,8 @@ class Chat extends Component {
       <section className="homePage">
 
         <h1>{userName}, Welcome to Chat!</h1>
+
+        <button onClick={this.getDogs.bind(this)}>Click Me</button>
 
         {userTyping &&
           <div className="type-area">{userTyping} typing...</div>

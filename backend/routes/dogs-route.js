@@ -8,22 +8,9 @@ const dogsService = require('../services/dogs-service.js')
 //     }
 //     next();
 // }
-let users = [
-  {
-    id: '1',
-    username: 'Robin Wieruch',
-  },
-  {
-    id: '2',
-    username: 'Dave Davids',
-  },
-];
-// res.send(Object.values(users))
-// res.json(users)
 
+// DOGS REST API:
 function dogsRoute(app) {
-  // DOGS REST API:
-
   // LIST
   app.get('/dogs', (req, res) => {
     console.log('req body', req.body)
@@ -31,6 +18,15 @@ function dogsRoute(app) {
       .then(dogs => res.json(dogs))
       .catch(err => console.log('err2', err))
   })
+
+  // SINGLE - GET Full details
+  app.get('/dogs/:dogId', (req, res) => {
+    const dogId = req.params.dogId;
+    dogsService.getById(dogId)
+      .then(dog => res.json(dog))
+      .catch(err => console.log('err5', err))
+  })
+
 }
 
 module.exports = dogsRoute;

@@ -10,10 +10,10 @@ var socket = io(serverUrl);
 
 connectSocket();
 function connectSocket() {
-  socket.on('chat new msg', (txt, from) => {
-    console.log(`'${from}' send massage: ${txt}`)
+  socket.on('chat new msg', (txt, date, from) => {
+    console.log(`'${from}' send massage: ${txt} at ${date}`)
     // actions.addMsg(txt, from)
-    store.dispatch(ChatActions.addMsg(txt, from))
+    store.dispatch(ChatActions.addMsg(txt, date, from))
   });
 
   socket.on('other user type', (user) => {
@@ -25,9 +25,9 @@ function connectSocket() {
   });
 }
 
-const send = (txt) => {
+const send = (txt, date) => {
   var currUser = store.getState().userStore.currUser;
-  socket.emit('msg sent', txt, currUser);
+  socket.emit('msg sent', txt, date, currUser);
 }
 const typing = () => {
   socket.emit('user type', store.getState().userStore.currUser);

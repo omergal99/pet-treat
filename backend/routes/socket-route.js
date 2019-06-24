@@ -10,9 +10,9 @@ function socketRoute(io) {
       console.log('user disconnected');
     });
 
-    socket.on('msg sent', (txt, from) => {
-      console.log('we got msg:', txt, 'from', from)
-      io.emit('chat new msg', txt, from);
+    socket.on('msg sent', (txt, date, from) => {
+      console.log('we got msg:', txt, 'from', from, 'at', date)
+      io.emit('chat new msg', txt, date, from);
     });
 
     socket.on('user type', (user) => {

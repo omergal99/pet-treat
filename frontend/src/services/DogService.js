@@ -10,7 +10,7 @@ function query() {
 
 // async function query() {
 //   try {
-//     let res = HttpService.get(`${DOGS_URL}`);
+//     let res = await HttpService.get(`${DOGS_URL}`);
 //     return res.data;
 //   }
 //   catch (err) {
@@ -18,6 +18,17 @@ function query() {
 //   }
 // }
 
+async function getById(dogId) {
+  try {
+    let res = await HttpService.get(`${DOGS_URL}/${dogId}`);
+    return res.data;
+  }
+  catch (err) {
+    console.log(err, 'We have an error in server - in: DogService-getByID')
+  }
+}
+
 export default {
   query,
+  getById
 }

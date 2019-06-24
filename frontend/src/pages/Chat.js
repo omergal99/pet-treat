@@ -13,6 +13,7 @@ class Chat extends Component {
     console.log(this.props)
     // actions.loadUser();
     this.props.loadUser();
+    this.props.loadDog('5d10583aadb3d1543eb0cf46');
   }
 
   updateMsg = (ev) => {
@@ -21,7 +22,6 @@ class Chat extends Component {
       actions.sendUserTyping();
       // this.props.sendUserTyping();
     }
-
     setTimeout(() => {
       if (Date.now() - this.state.typeTime > 1000) {
         actions.sendUserStop();
@@ -33,14 +33,18 @@ class Chat extends Component {
   imSendMsg = (ev) => {
     ev.preventDefault();
     if (this.state.text) {
-      actions.sendMsg(this.state.text);
+      actions.sendMsg(this.state.text, Date.now());
       // this.props.sendMsg(this.state.text);
       this.setState({ text: '' });
     }
   }
 
-  async getDogs(){
+  async getDogs() {
     var dogs = await actions.loadDogs();
+    console.log(dogs)
+  }
+  async getDog() {
+    var dogs = await actions.loadDog('5d10583aadb3d1543eb0cf46');
     console.log(dogs)
   }
 
@@ -49,9 +53,10 @@ class Chat extends Component {
     var userTyping = this.props.userTyping;
     var massages = this.props.msgs;
     const chat = massages.map((msg, idx) => (
-      <li className={userName === msg.from ? 'own' : 'else'} key={idx}>
-        <label className="user">{msg.from}:&nbsp;</label>
-        <label>{msg.txt}</label>
+      <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}>
+          <label className="user">{msg.fromUserName}</label>
+          <label className="text">{msg.text}</label>
+          <label className="date">{`${new Date(Number((msg.dateCreated))).toLocaleString()}`}</label>
       </li>
     ));
     return (
@@ -59,7 +64,8 @@ class Chat extends Component {
 
         <h1>{userName}, Welcome to Chat!</h1>
 
-        <button onClick={this.getDogs.bind(this)}>Click Me</button>
+        <button onClick={this.getDogs.bind(this)}>print All</button>
+        <button onClick={this.getDog.bind(this)}>print one</button>
 
         {userTyping &&
           <div className="type-area">{userTyping} typing...</div>

@@ -1,5 +1,5 @@
 const initialState = {
-    currUser: 'user2'
+    currUser: ''
 }
 
 export default (state = initialState, action) => {
@@ -7,6 +7,7 @@ export default (state = initialState, action) => {
 
     switch (action.type) {
         case 'setUser':
+            console.log(action.payload.user)
             return { currUser: action.payload.user };
         default:
             return state;

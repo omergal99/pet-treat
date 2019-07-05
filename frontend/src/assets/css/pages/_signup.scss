@@ -1,0 +1,50 @@
+/**************** Pages ****************/
+
+/********** Login-Signup Page **********/
+
+.signup {
+  .signup-form {
+    .user-name {
+      max-width: 80vw;
+      margin: 0 auto 30px auto;
+      input {
+        font-size: 1.1em;
+        // padding: 4px 8px;
+        margin: 4px 8px;
+        background-color: #0000;
+        border: none;
+        border-bottom: 2px solid $clr2;
+        outline: none;
+        width: 100%;
+      }
+    }
+    .approves-btn {
+      max-width: 90vw;
+      margin: 0 auto;
+      .submit,
+      .reset {
+        cursor: pointer;
+        font-size: 1em;
+        border: none;
+        border-radius: 2px;
+        padding: 4px 10px;
+        color: white;
+      }
+      .submit {
+        padding: 6px 40px;
+        background-color: #1238c1;
+      }
+      .reset {
+        background-color: #b72d03;
+      }
+    }
+    @media (min-width: 500px) {
+      .approves-btn {
+        max-width: 50vw;
+      }
+      .user-name {
+        max-width: 50vw;
+      }
+    }
+  }
+}

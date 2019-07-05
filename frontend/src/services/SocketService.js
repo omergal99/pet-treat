@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import ChatActions from '../store/actions/ChatActions';
 
-import store from '../store/AppStore.js'
+import store from '../store/AppStore'
 
 const serverUrl = process.env.NODE_ENV !== 'development' ?
   '' : '//localhost:9090';
@@ -10,10 +10,10 @@ var socket = io(serverUrl);
 
 connectSocket();
 function connectSocket() {
-  socket.on('chat new msg', (txt, date, from) => {
+  socket.on('chat new msg', (from, txt, date) => {
     console.log(`'${from}' send massage: ${txt} at ${date}`)
     // actions.addMsg(txt, from)
-    store.dispatch(ChatActions.addMsg(txt, date, from))
+    store.dispatch(ChatActions.addMsg(from, txt, date))
   });
 
   socket.on('other user type', (user) => {
@@ -25,9 +25,9 @@ function connectSocket() {
   });
 }
 
-const send = (txt, date) => {
-  var currUser = store.getState().userStore.currUser;
-  socket.emit('msg sent', txt, date, currUser);
+const send = (user, txt, date) => {
+  // var currUser = store.getState().userStore.currUser;
+  socket.emit('msg sent', user, txt, date);
 }
 const typing = () => {
   socket.emit('user type', store.getState().userStore.currUser);

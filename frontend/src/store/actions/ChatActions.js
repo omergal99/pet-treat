@@ -1,8 +1,8 @@
 import SocketService from '../../services/SocketService';
 
 
-function sendMsg(txt, date) {
-  SocketService.send(txt, date);
+function sendMsg(user, txt, date) {
+  SocketService.send(user, txt, date);
   // return { type: '', payload: { } };
 }
 function sendUserTyping() {
@@ -15,8 +15,8 @@ function sendUserStop() {
 }
 
 
-function addMsg(text, dateCreated, fromUserName) {
-  return { type: 'pushToMsgs', payload: { text, dateCreated, fromUserName } }
+function addMsg(fromUserName, text, dateCreated) {
+  return { type: 'pushToMsgs', payload: { fromUserName, text, dateCreated } }
 }
 function setUserTyping(user) {
   return { type: 'changeUserTyping', payload: { user } }

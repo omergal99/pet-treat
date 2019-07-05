@@ -13,6 +13,14 @@ function loadUser() {
   }
 }
 
+function setUser(name) {
+  return async (dispatch) => {
+    const user = await UserService.signup(name);
+    dispatch({ type: 'setUser', payload: { user } })
+  }
+}
+
 export default {
   loadUser,
+  setUser
 }

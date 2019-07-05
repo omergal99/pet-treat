@@ -15,7 +15,19 @@ function getById(dogId) {
     .catch(err => console.log('err 41:', err))
 }
 
+function addMsg(dogId, dogMsg) {
+  dogId = new ObjectId(dogId)
+  return mongoService.connect()
+    .then(db => {
+      db.collection('dogs').findOneAndUpdate({ _id: dogId }, { $push: { "msgHistory": dogMsg } })
+        .then(oneDog => oneDog)
+        .catch(err => console.log('err 43:', err))
+    })
+    .catch(err => console.log('err 44:', err))
+}
+
 module.exports = {
   query,
-  getById
+  getById,
+  addMsg
 }

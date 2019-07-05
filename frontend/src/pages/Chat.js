@@ -10,10 +10,10 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    // console.log(this.props)
     // actions.loadUser();
-    this.props.loadUser();
-    this.props.loadDog('5d10583aadb3d1543eb0cf46');
+    // this.props.loadUser();
+    this.props.loadDog('5d1e284dba30b944ba076387');
   }
 
   updateMsg = (ev) => {
@@ -33,7 +33,7 @@ class Chat extends Component {
   imSendMsg = (ev) => {
     ev.preventDefault();
     if (this.state.text) {
-      actions.sendMsg(this.state.text, Date.now());
+      actions.sendMsg(this.props.currUser,this.state.text, Date.now());
       // this.props.sendMsg(this.state.text);
       this.setState({ text: '' });
     }
@@ -43,9 +43,9 @@ class Chat extends Component {
     var dogs = await actions.loadDogs();
     console.log(dogs)
   }
-  async getDog() {
-    var dogs = await actions.loadDog('5d10583aadb3d1543eb0cf46');
-    console.log(dogs)
+  getDog() {
+    // this.props.loadDog('5d10583aadb3d1543eb0cf46');
+    console.log('WE do that on INIT')
   }
 
   render() {
@@ -60,7 +60,7 @@ class Chat extends Component {
       </li>
     ));
     return (
-      <section className="homePage">
+      <section className="chat">
 
         <h1>{userName}, Welcome to Chat!</h1>
 
@@ -89,9 +89,9 @@ class Chat extends Component {
 function mapStateToProps(state) {
   console.log(state)
   return {
-    msgs: state.chatStore.msgs,
-    userTyping: state.chatStore.userTyping,
-    currUser: state.userStore.currUser
+    // msgs: state.chatStore.msgs,
+    // userTyping: state.chatStore.userTyping,
+    // currUser: state.userStore.currUser
   }
 }
 

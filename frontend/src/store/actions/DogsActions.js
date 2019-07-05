@@ -6,10 +6,8 @@ function loadDogs() {
 }
 
 function loadDog(dogId) {
-  console.log('sdgsdg22222')
   return async (dispatch) => {
     const dog = await DogService.getById(dogId);
-    console.log(dog.msgHistory)
     dispatch({ type: 'replaceMsgs', payload: dog.msgHistory })
   }
 }
@@ -49,13 +47,11 @@ export default {
 //     "msgHistory": [
 //       {
 //         "dateCreated": "1555979960117",
-//         "fromUserId": "1002",
 //         "fromUserName": "omer",
 //         "text": "hello im a test number 1"
 //       },
 //       {
 //         "dateCreated": "1560979960117",
-//         "fromUserId": "1005",
 //         "fromUserName": "noam",
 //         "text": "hello im a test number 2"
 //       },
@@ -90,13 +86,11 @@ export default {
 //     "msgHistory": [
 //       {
 //         "dateCreated": "1555972960117",
-//         "fromUserId": "1006",
 //         "fromUserName": "ezra",
 //         "text": "hello im a test number 3 Hezz"
 //       },
 //       {
 //         "dateCreated": "1561079960117",
-//         "fromUserId": "1008",
 //         "fromUserName": "smadar",
 //         "text": "hello im a test number 4 Hezz"
 //       },

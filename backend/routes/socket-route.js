@@ -1,4 +1,4 @@
-
+const dogsService = require('../services/dogs-service.js')
 
 function socketRoute(io) {
 
@@ -10,9 +10,10 @@ function socketRoute(io) {
       console.log('user disconnected');
     });
 
-    socket.on('msg sent', (txt, date, from) => {
-      console.log('we got msg:', txt, 'from', from, 'at', date)
-      io.emit('chat new msg', txt, date, from);
+    socket.on('msg sent', (from, txt, date) => {
+      console.log('we got msg:', txt, 'from', from, 'at', date);
+      dogsService.addMsg('5d1e284dba30b944ba076387', { fromUserName: from, text: txt, dateCreated: date })
+      io.emit('chat new msg', from, txt, date);
     });
 
     socket.on('user type', (user) => {

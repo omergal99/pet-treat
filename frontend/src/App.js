@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './assets/css/App.scss';
 
-import Chat from './pages/Chat';
+import Router from './Router';
 
 class App extends Component {
   componentDidMount() {
@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Chat />
+        <Router />
       </div>
     );
   }

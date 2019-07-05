@@ -28,7 +28,24 @@ async function getById(dogId) {
   }
 }
 
+// function update(review) {
+//   var idAndTxt = {
+//     id: review._id,
+//     txt: review.content.txt
+//   }
+//   return new Promise((resolve, reject) => {
+//     HttpService.put(`${REVIEW_URL}/${review._id}`, idAndTxt)
+//       .then(res => {
+//         let updatedRev = res
+//         //console.log('updated review:', updatedRev)
+//         resolve(updatedRev)
+//       })
+//       .catch(err => err)
+//   })
+// }
+
 export default {
   query,
-  getById
+  getById,
+  // update
 }

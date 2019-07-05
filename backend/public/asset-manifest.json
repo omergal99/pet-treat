@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/static/css/main.eb7d1645.chunk.css",
+    "main.js": "/static/js/main.7ca5ba32.chunk.js",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "static/js/2.cf6aab88.chunk.js": "/static/js/2.cf6aab88.chunk.js",
+    "index.html": "/index.html",
+    "precache-manifest.837bd5f91ffc4dd86b03aac600a97240.js": "/precache-manifest.837bd5f91ffc4dd86b03aac600a97240.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/App.scss": "/static/media/Quando-Regular.849e6795.ttf"
+  }
+}

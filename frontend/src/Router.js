@@ -36,7 +36,7 @@ class Router extends Component {
           <div className="route">
             <Switch>
               {!currUserName &&
-                <Route exact path="/" component={SignupPage} />
+                <Route path="/" component={SignupPage} />
               }
 
               <Route exact path="/" render={() => <HomePage currUser={this.props.currUser} />} />

@@ -21,7 +21,7 @@ class Chat extends Component {
     this.scrollToBottom();
   }
 
-  scrollToBottom = () => {
+  scrollToBottom() {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -39,22 +39,13 @@ class Chat extends Component {
     }, 1200)
   }
 
-  imSendMsg = (ev) => {
+  sendingMsg = (ev) => {
     ev.preventDefault();
     if (this.state.text) {
       actions.sendMsg(this.props.currUser, this.state.text, Date.now());
       // this.props.sendMsg(this.state.text);
       this.setState({ text: '' });
     }
-  }
-
-  async getDogs() {
-    var dogs = await actions.loadDogs();
-    console.log(dogs)
-  }
-  getDog() {
-    // this.props.loadDog('5d10583aadb3d1543eb0cf46');
-    console.log('WE do that on INIT')
   }
 
   render() {
@@ -82,10 +73,10 @@ class Chat extends Component {
         }
 
         <form className="msg-form">
-          <input value={this.state.text} onChange={this.updateMsg} type="text"
-            autoFocus={isDesktop}
+          <input value={this.state.text} onChange={this.updateMsg.bind(this)} type="text"
+            autoFocus={isDesktop} onClick={this.scrollToBottom.bind(this)}
           />
-          <button onClick={this.imSendMsg}>SEND</button>
+          <button onClick={this.sendingMsg.bind(this)}>SEND</button>
         </form>
 
         <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>

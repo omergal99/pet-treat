@@ -23,7 +23,7 @@
   "scripts": {
     "serve": "react-scripts serve",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && move build ../backend/public",
     "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",

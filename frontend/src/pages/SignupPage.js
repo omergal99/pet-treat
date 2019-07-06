@@ -4,7 +4,7 @@ import actions from '../store/actions';
 
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Formik, Form, Field } from 'formik';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom'; // Not neccerry
 
 class SignupPage extends Component {
 
@@ -18,71 +18,60 @@ class SignupPage extends Component {
         <h2>Signup</h2>
         <Formik
           // Sets up our default values
-          initialValues={{ name: '', email: '', password: '', city: '' }}
+          initialValues={{ name: '', code: '' }}
 
           // Validates our data
-          // validate={values => {
-          //   const errors = {};
-          //   console.log(values);
-          //   if (!values.email) {
-          //     errors.email = 'Required';
-          //   }
-          //   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-          //     errors.email = 'You must supply a valid email address';
-          //   }
-          //   if (values.password.length < 8) {
-          //     errors.password = 'Passwords must be at least 8 characters';
-          //   }
-          //   if (values.email === values.password) {
-          //     errors.password = 'Your password shouldn\'t be the same as your email';
-          //   }
-          //   return errors;
-          // }}
+          validate={values => {
+            const errors = {};
+            if (values.name.length < 3) {
+              errors.name = 'Name must be at least 3 characters';
+            }
+            if (values.code.length < 5) {
+              errors.code = 'Code must be at least 5 characters';
+            }
+            if (values.name === values.code) {
+              errors.code = 'Your Code shouldn\'t be the same as your Name';
+            }
+            return errors;
+          }}
 
           // Handles our submission
           onSubmit={(values, actions) => {
-            // This is where you could wire up axios or superagent
-            // console.log('Submitted Values:', values);
-            // Simulates the delay of a real request
-            // setTimeout(() => actions.setSubmitting(false), 3 * 1000);
-
-            // console.log('Submitted Values:', values);
-            this.props.setUser(values.name)
+            this.props.newUserEnter({ name: values.name, code: values.code })
               .then(() => this.props.history.push(`/`))
           }}
         >
           {formikProps => (
             <Form className="signup-form">
-              <div className="user-name">
+
+              <div className="user-details">
+                <div style={{
+                  textAlign: 'left', paddingLeft: '8px', fontWeight: 'bold', color: '#444444'
+                }}>Name</div>
                 {/* <Field name="name" autoFocus={(window.innerWidth > 500)} type="text"
                   placeholder="Write your name" /> */}
-                <Field name="name" placeholder="Write your name" type="text"
+                <Field name="name" placeholder="Write your name"
                   autoFocus={(window.orientation === undefined &&
                     navigator.userAgent.indexOf('Mobile') === -1)} />
+                <div style={{ color: 'red', height: '20px' }}>
+                  {formikProps.errors.name && formikProps.touched.name && (
+                    <label>{formikProps.errors.name}</label>
+                  )}
+                </div>
               </div>
 
-              {/* <div>
-                <Field name="city" component="select">
-                  <option value="Haifa1">Haifa1</option>
-                  <option value="TLV">TLV</option>
-                </Field><br />
+              <div className="user-details">
+                <div style={{
+                  textAlign: 'left', paddingLeft: '8px', fontWeight: 'bold', color: '#444444'
+                }}>Code</div>
+                <Field name="code" placeholder="Select a code - at least 5 Chars" type="password" />
+                <div style={{ color: 'red', height: '20px' }}>
+                  {formikProps.errors.code && formikProps.touched.code && (
+                    <label>{formikProps.errors.code}</label>
+                  )}
+                </div>
+              </div>
 
-                <label htmlFor="email">Email </label>
-                <Field name="email" /><br />
-                {formikProps.errors.email && formikProps.touched.email && (
-                  <div style={{ color: 'red' }}>
-                    {formikProps.errors.email}
-                  </div>
-                )}
-
-                <label htmlFor="password">Password </label>
-                <Field name="password" type="password" />
-                {formikProps.errors.password && formikProps.touched.password && (
-                  <div style={{ color: 'red' }}>
-                    {formikProps.errors.password}
-                  </div>
-                )}
-              </div> */}
               <div className="approves-btn flex wrap space-between">
                 <input className="reset" type="reset" value="Reset"
                   onClick={formikProps.handleReset}

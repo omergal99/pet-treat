@@ -12,6 +12,7 @@ var io = require('socket.io')(http);
 
 const socketRoute = require('./routes/socket-route')
 const dogsRoute = require('./routes/dogs-route')
+const usersRoute = require('./routes/users-route')
 
 app.use(cors({
     origin: ['http://localhost:3000'],
@@ -30,13 +31,9 @@ app.use(session({
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send('Hello Omer')
-})
-
-
 socketRoute(io)
 dogsRoute(app)
+usersRoute(app)
 
 const port = process.env.PORT || 9090;
 http.listen(port, () => console.log(`server on *:${port}`));

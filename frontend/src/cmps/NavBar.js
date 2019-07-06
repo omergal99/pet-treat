@@ -14,7 +14,7 @@ const NavBar = ({currUserName}) => (
         <div className="link flex space-between align-center">
           <NavLink exact className="Nav_link" to="/" activeClassName="activeRoute">Home</NavLink>
           <NavLink className="Nav_link" to="/chat" activeClassName="activeRoute">Chat</NavLink>
-          <NavLink className="Nav_link" to="/signup" activeClassName="activeRoute">Sign Up</NavLink>
+          <NavLink className="Nav_link" to="/signup" activeClassName="activeRoute">Logout</NavLink>
         </div>
       }
     </ul>

@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case 'setUser':
             console.log(action.payload.user)
-            return { currUser: action.payload.user };
+            return { currUser: action.payload.user.name };
         default:
             return state;
     }

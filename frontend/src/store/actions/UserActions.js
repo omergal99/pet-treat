@@ -13,14 +13,15 @@ function loadUser() {
   }
 }
 
-function setUser(name) {
+function newUserEnter(newUser) {
   return async (dispatch) => {
-    const user = await UserService.signup(name);
+    const user = await UserService.signup(newUser);
+    console.log(user)
     dispatch({ type: 'setUser', payload: { user } })
   }
 }
 
 export default {
   loadUser,
-  setUser
+  newUserEnter,
 }

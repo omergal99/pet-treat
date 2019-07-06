@@ -14,6 +14,15 @@ class Chat extends Component {
     // actions.loadUser();
     // this.props.loadUser();
     this.props.loadDog('5d1e284dba30b944ba076387');
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
   updateMsg = (ev) => {
@@ -33,7 +42,7 @@ class Chat extends Component {
   imSendMsg = (ev) => {
     ev.preventDefault();
     if (this.state.text) {
-      actions.sendMsg(this.props.currUser,this.state.text, Date.now());
+      actions.sendMsg(this.props.currUser, this.state.text, Date.now());
       // this.props.sendMsg(this.state.text);
       this.setState({ text: '' });
     }
@@ -54,18 +63,16 @@ class Chat extends Component {
     var massages = this.props.msgs;
     const chat = massages.map((msg, idx) => (
       <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}>
-          <label className="user">{msg.fromUserName}</label>
-          <label className="text">{msg.text}</label>
-          <label className="date">{`${new Date(Number((msg.dateCreated))).toLocaleString()}`}</label>
+        <label className="user">{msg.fromUserName}</label>
+        <label className="text">{msg.text}</label>
+        <label className="date">{`${new Date(Number((msg.dateCreated))).toLocaleString()}`}</label>
       </li>
     ));
+    var isDesktop = (window.orientation === undefined && navigator.userAgent.indexOf('Mobile') === -1);
     return (
       <section className="chat">
 
         <h1>{userName}, Welcome to Chat!</h1>
-
-        <button onClick={this.getDogs.bind(this)}>print All</button>
-        <button onClick={this.getDog.bind(this)}>print one</button>
 
         {userTyping &&
           <div className="type-area">{userTyping} typing...</div>
@@ -75,11 +82,16 @@ class Chat extends Component {
         }
 
         <form className="msg-form">
-          <input autoFocus value={this.state.text} onChange={this.updateMsg} type="text" />
+          <input value={this.state.text} onChange={this.updateMsg} type="text"
+            autoFocus={isDesktop}
+          />
           <button onClick={this.imSendMsg}>SEND</button>
         </form>
 
-        <ul className="msg-list">{chat}</ul>
+        <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>
+          {chat}
+          <div ref={(el) => { this.messagesEnd = el; }}></div>
+        </ul>
 
       </section>
     )

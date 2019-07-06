@@ -36,16 +36,10 @@
       // &:active {
         // color: rgb(28, 31, 31);
       // }
-      @media (min-width: 500px) {
+      @media (min-width: 550px){
         & {
-          font-size: 1.1em;
-          min-width: 60px;
-        }
-      }
-      @media (min-width: 350px) and (max-width: 500px) {
-        & {
-          min-width: 50px;
           font-size: 1em;
+          min-width: 50px;
         }
       }
     }

@@ -18,8 +18,8 @@ import NavBar from './cmps/NavBar'
 class Router extends Component {
 
   componentDidMount() {
+    this.props.loadUser();
     console.log(this.props)
-    // this.props.loadUser();
   }
 
   render() {

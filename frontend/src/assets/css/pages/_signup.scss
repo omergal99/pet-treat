@@ -4,13 +4,14 @@
 
 .signup {
   .signup-form {
-    .user-name {
+    padding-top: 16px;
+    .user-details {
       max-width: 80vw;
       margin: 0 auto 30px auto;
       input {
         font-size: 1.1em;
-        // padding: 4px 8px;
-        margin: 4px 8px;
+        padding: 4px 8px;
+        margin: 4px 0px;
         background-color: #0000;
         border: none;
         border-bottom: 2px solid $clr2;
@@ -32,7 +33,7 @@
       }
       .submit {
         padding: 6px 40px;
-        background-color: #1238c1;
+        background-color: #0059ad;
       }
       .reset {
         background-color: #b72d03;

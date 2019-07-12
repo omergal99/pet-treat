@@ -39,11 +39,9 @@ class Chat extends Component {
     }, 1200)
   }
 
-  sendingMsg = (text) => {
-    if (text) {
-      actions.sendMsg(this.props.currUser, text, Date.now());
-      // this.props.sendMsg(this.state.text);
-    }
+  sendingMsg = (msg) => {
+    actions.sendMsg(msg);
+    // this.props.sendMsg(msg);
   }
 
   render() {
@@ -51,10 +49,22 @@ class Chat extends Component {
     var userTyping = this.props.userTyping;
     var massages = this.props.msgs;
     const chat = massages.map((msg, idx) => (
-      <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}>
+      <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}
+      >
         <label className="user">{msg.fromUserName}</label>
         <label className="text">{msg.text}</label>
         <label className="date">{`${new Date(Number((msg.dateCreated))).toLocaleString()}`}</label>
+        {msg.dogOptions &&
+          <label className="dog-doing">{msg.dogOptions.map(dogOption => {
+            return dogOption ?
+              <div key={dogOption._id}>
+                <img src={dogOption.img} alt={dogOption.imgName} />
+                <label>{dogOption.text}</label>
+              </div>
+              :
+              ''
+          })}</label>
+        }
       </li>
     ));
     var isDesktop = (window.orientation === undefined && navigator.userAgent.indexOf('Mobile') === -1);
@@ -72,6 +82,7 @@ class Chat extends Component {
           />
           <button onClick={this.sendingMsg.bind(this)}>SEND</button>
         </form> */}
+
         {family &&
           <ChatForm family={family} onSendMsg={this.sendingMsg} />
         }

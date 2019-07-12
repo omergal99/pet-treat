@@ -10,10 +10,10 @@ function socketRoute(io) {
       console.log('user disconnected');
     });
 
-    socket.on('msg sent', (from, txt, date) => {
-      console.log('we got msg:', txt, 'from', from, 'at', date);
-      dogsService.addMsg('5d1e284dba30b944ba076387', { fromUserName: from, text: txt, dateCreated: date })
-      io.emit('chat new msg', from, txt, date);
+    socket.on('msg sent', msg => {
+      console.log('we got msg:', msg.text, 'from', msg.fromUserName, 'at', msg.dateCreated);
+      dogsService.addMsg('5d1e284dba30b944ba076387', msg)
+      io.emit('chat new msg', msg);
     });
 
     socket.on('user type', (user) => {

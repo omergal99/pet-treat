@@ -9,6 +9,7 @@ function loadDog(dogId) {
   return async (dispatch) => {
     const dog = await DogService.getById(dogId);
     dispatch({ type: 'replaceMsgs', payload: dog.msgHistory })
+    dispatch({ type: 'updateDog', payload: dog })
   }
 }
 
@@ -20,27 +21,27 @@ export default {
 // var doDogsJSON = [
 //   {
 //     "name": "Messi",
-//     "img": "https://media.istockphoto.com/photos/beautiful-dog-lying-in-the-forest-picture-id1052880600",
+//     "img": "https://res.cloudinary.com/omergal/image/upload/v1562896264/family/messi_v1z4sa.jpg",
 //     "bornDate": "1245979960117",
 //     "family": [
 //       {
 //         "userId": "1002",
-//         "userImg": "https://media.istockphoto.com/photos/hiking-in-the-mountains-picture-id1053472118",
+//         "userImg": "https://res.cloudinary.com/omergal/image/upload/v1562896019/family/omer_awhali.jpg",
 //         "userName": "omer"
 //       },
 //       {
 //         "userId": "1003",
-//         "userImg": "https://media.istockphoto.com/photos/hiking-in-the-mountains-picture-id1053472118",
+//         "userImg": "https://res.cloudinary.com/omergal/image/upload/v1562896018/family/lea_hpgvnw.jpg",
 //         "userName": "lea"
 //       },
 //       {
 //         "userId": "1004",
-//         "userImg": "https://media.istockphoto.com/photos/hiking-in-the-mountains-picture-id1053472118",
+//         "userImg": "https://res.cloudinary.com/omergal/image/upload/v1562896018/family/izik_aphrkj.jpg",
 //         "userName": "izik"
 //       },
 //       {
 //         "userId": "1005",
-//         "userImg": "https://media.istockphoto.com/photos/hiking-in-the-mountains-picture-id1053472118",
+//         "userImg": "https://res.cloudinary.com/omergal/image/upload/v1562896018/family/noam_c6qlqf.jpg",
 //         "userName": "noam"
 //       },
 //     ],

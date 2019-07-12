@@ -41,7 +41,8 @@ class Router extends Component {
 
               <Route exact path="/" render={() => <HomePage currUser={this.props.currUser} />} />
               <Route exact path="/chat" render={() =>
-                <Chat msgs={this.props.msgs} userTyping={this.props.userTyping} currUser={this.props.currUser} />
+                <Chat msgs={this.props.msgs} userTyping={this.props.userTyping} currUser={this.props.currUser} 
+                dog={this.props.dog}/>
               } />
               <Route exact path="/signup" component={SignupPage} />
             </Switch>
@@ -54,11 +55,12 @@ class Router extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  // console.log(state)
   return {
     msgs: state.chatStore.msgs,
     userTyping: state.chatStore.userTyping,
-    currUser: state.userStore.currUser
+    currUser: state.userStore.currUser,
+    dog: state.dogsStore
   }
 }
 

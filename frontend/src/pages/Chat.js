@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import actions from '../store/actions';
+import ChatForm from '../cmps/ChatForm';
 
 class Chat extends Component {
   state = {
-    text: '',
     typeTime: null
   }
 
@@ -25,7 +25,7 @@ class Chat extends Component {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
-  updateMsg = (ev) => {
+  usertyped = (ev) => {
     this.setState({ text: ev.target.value, typeTime: Date.now() });
     if (Date.now() - this.state.typeTime > 250) {
       actions.sendUserTyping();
@@ -39,12 +39,10 @@ class Chat extends Component {
     }, 1200)
   }
 
-  sendingMsg = (ev) => {
-    ev.preventDefault();
-    if (this.state.text) {
-      actions.sendMsg(this.props.currUser, this.state.text, Date.now());
+  sendingMsg = (text) => {
+    if (text) {
+      actions.sendMsg(this.props.currUser, text, Date.now());
       // this.props.sendMsg(this.state.text);
-      this.setState({ text: '' });
     }
   }
 
@@ -60,24 +58,23 @@ class Chat extends Component {
       </li>
     ));
     var isDesktop = (window.orientation === undefined && navigator.userAgent.indexOf('Mobile') === -1);
+    var family = this.props.dog.family;
     return (
       <section className="chat">
 
         <h1>{userName}, Welcome to Chat!</h1>
 
-        {userTyping &&
-          <div className="type-area">{userTyping} typing...</div>
-        }
-        {!userTyping &&
-          <div className="type-area"></div>
-        }
+        <div className="type-area">{userTyping ? `${userTyping} typing...` : ''}</div>
 
-        <form className="msg-form">
-          <input value={this.state.text} onChange={this.updateMsg.bind(this)} type="text"
+        {/* <form className="msg-form">
+          <input value={this.state.text} onChange={this.usertyped.bind(this)} type="text"
             autoFocus={isDesktop} onClick={this.scrollToBottom.bind(this)}
           />
           <button onClick={this.sendingMsg.bind(this)}>SEND</button>
-        </form>
+        </form> */}
+        {family &&
+          <ChatForm family={family} onSendMsg={this.sendingMsg} />
+        }
 
         <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>
           {chat}
@@ -90,7 +87,7 @@ class Chat extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  // console.log(state)
   return {
     // msgs: state.chatStore.msgs,
     // userTyping: state.chatStore.userTyping,

@@ -30,6 +30,7 @@ body {
   flex-direction: column;  
   justify-content: space-between;
   .nav {
+    z-index: 10;
     position: fixed;
     bottom: 0px;
     right: 0px;

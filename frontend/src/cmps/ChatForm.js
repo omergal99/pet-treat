@@ -121,7 +121,6 @@ class ChatForm extends Component {
       </div>
     });
     return (
-      //   <button onClick={this.emitSendingMsg.bind(this)}>SEND</button>
       <div className="form-levels">
         {level === 2 &&
           <div className="level">

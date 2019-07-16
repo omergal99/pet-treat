@@ -52,10 +52,9 @@ class Chat extends Component {
       <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}
       >
         <label className="user">{msg.fromUserName}</label>
-        <label className="text">{msg.text}</label>
         <label className="date">{`${new Date(Number((msg.dateCreated))).toLocaleString()}`}</label>
         {msg.dogOptions &&
-          <label className="dog-doing">{msg.dogOptions.map(dogOption => {
+          <div className="dog-doing">{msg.dogOptions.map(dogOption => {
             return dogOption ?
               <div key={dogOption._id}>
                 <img src={dogOption.img} alt={dogOption.imgName} />
@@ -63,8 +62,9 @@ class Chat extends Component {
               </div>
               :
               ''
-          })}</label>
+          })}</div>
         }
+        <label className="text">{msg.text}</label>
       </li>
     ));
     var isDesktop = (window.orientation === undefined && navigator.userAgent.indexOf('Mobile') === -1);
@@ -76,15 +76,8 @@ class Chat extends Component {
 
         <div className="type-area">{userTyping ? `${userTyping} typing...` : ''}</div>
 
-        {/* <form className="msg-form">
-          <input value={this.state.text} onChange={this.usertyped.bind(this)} type="text"
-            autoFocus={isDesktop} onClick={this.scrollToBottom.bind(this)}
-          />
-          <button onClick={this.sendingMsg.bind(this)}>SEND</button>
-        </form> */}
-
         {family &&
-          <ChatForm family={family} onSendMsg={this.sendingMsg} />
+          <ChatForm family={family} onSendMsg={this.sendingMsg.bind(this)} />
         }
 
         <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>
@@ -98,11 +91,7 @@ class Chat extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state)
   return {
-    // msgs: state.chatStore.msgs,
-    // userTyping: state.chatStore.userTyping,
-    // currUser: state.userStore.currUser
   }
 }
 

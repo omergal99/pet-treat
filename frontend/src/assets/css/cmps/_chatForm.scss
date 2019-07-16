@@ -1,18 +1,21 @@
 .form-levels {
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
   margin-bottom: 45px;
-  background-color: rgb(190, 242, 255);
-  background: linear-gradient(0.11turn, rgb(87, 167, 221), rgb(190, 242, 255));
   .level {
     height: 208px;
-    background-color: #609060;
     background: linear-gradient(0.11turn, rgb(154, 209, 247), rgb(216, 247, 255));
     & > label {
       padding: 4px 0 0 0;
       display: block;
       font-weight: bold;
+    }
+    animation: .4s slideLeft;
+    @keyframes slideLeft {
+      from {
+        transform: translateY(100%);
+      }
     }
     .table-2 {
       height: calc(100% - 22px);
@@ -37,18 +40,21 @@
         align-items: center;
         flex-direction: column;
         margin: auto 0;
-        .name{
+        .name {
           width: 100%;
         }
       }
     }
   }
   .line-btn {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(0.11turn, rgb(87, 167, 221), rgb(190, 242, 255));
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     .level-btn {
-      grid-column: 2/2;
       cursor: pointer;
+      grid-column: 2/2;
       margin: 8px auto;
       height: 46px;
       min-width: 64px;

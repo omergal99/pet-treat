@@ -62,8 +62,9 @@
       .dog-doing {
         grid-area: 2 / 1 / 2 / 3;
         display: flex;
-        justify-content: space-around;
+        align-items: baseline;
         & > div {
+          padding-left: 8px;
           display: flex;
           flex-direction: column;
           img {

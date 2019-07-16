@@ -10,7 +10,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'pushToMsgs':
       // return { msgs: [...state.msgs, action.payload], userTyping: `${state.userTyping}` };
-      return Object.assign(state, { msgs: [...state.msgs, action.payload] });
+      copy = JSON.parse(JSON.stringify(state));
+      return Object.assign(copy, { msgs: [...copy.msgs, action.payload] });
     case 'replaceMsgs':
       copy = JSON.parse(JSON.stringify(state));
       return Object.assign(copy, { msgs: action.payload });

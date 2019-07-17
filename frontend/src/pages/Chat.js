@@ -22,7 +22,8 @@ class Chat extends Component {
   }
 
   scrollToBottom() {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    // this.messagesEnd.scrollIntoView({ behavior: "smooth", block: "end" });
+    this.messagesEnd.scrollIntoView({ behavior: "auto", block: "end" });
   }
 
   usertyped = (ev) => {

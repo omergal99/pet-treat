@@ -7,8 +7,12 @@ const USER_STORAGE = 'curr user';
 // var user = _randomName();
 
 function getUser() {
-  var currUser = StorageService.load(USER_STORAGE);
-  return Promise.resolve(currUser);
+  var storeUser = StorageService.load(USER_STORAGE);
+  if(storeUser){
+    return Promise.resolve(storeUser);
+  }else{
+    return Promise.resolve({ name: '', code: '' });
+  }
   // return Promise.resolve(user);
 }
 

@@ -19,7 +19,7 @@ class Router extends Component {
 
   componentDidMount() {
     this.props.loadUser();
-    console.log(this.props)
+    // console.log(this.props)
   }
 
   render() {

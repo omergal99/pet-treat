@@ -6,6 +6,7 @@ import UserService from '../../services/UserService';
 //       .then((user) => dispatch({ type: 'setUser', payload: { user } }))
 //   }
 // }
+
 function loadUser() {
   return async (dispatch) => {
     const user = await UserService.getUser();

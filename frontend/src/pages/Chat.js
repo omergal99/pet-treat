@@ -83,7 +83,7 @@ class Chat extends Component {
 
         <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>
           {chat}
-          <div ref={(el) => { this.messagesEnd = el; }}></div>
+          <div ref={el => this.messagesEnd = el}></div>
         </ul>
 
       </section>

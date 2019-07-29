@@ -1,0 +1,15 @@
+.nav-options {
+  list-style: none;
+  color: white;
+  width: 52px;
+  cursor: pointer;
+  background-color: rgba(0, 33, 76, 0.8);
+  &:hover {
+    background-color: rgba(0, 33, 76, 0.8);
+  }
+  img {
+    height: 41px;
+    top: 2px;
+    position: relative;
+  }
+}

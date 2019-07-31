@@ -8,7 +8,7 @@ class ChatForm extends Component {
   }
 
   state = {
-    level: 1,
+    level: 4,
     buttonTexts: ['Make New Message', '', 'Continue', 'Send!'],
     msg: {
       fromUserName: '',
@@ -139,8 +139,9 @@ class ChatForm extends Component {
           </div>
         }
         {level === 4 &&
-          <div className="level">
-            <div className="table-4">
+          <div className="level" style={{ height: level === 4 ? 'auto' : '' }}>
+            <div className="table-4" >
+              <label>Something to add?</label>
               <input value={this.state.msg.text} onChange={this.updateText.bind(this)} type="text" />
             </div>
           </div>

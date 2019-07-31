@@ -46,6 +46,20 @@
         }
       }
     }
+    .table-4 {
+      padding: 10px 6px;
+      text-align: left;
+      label{
+        padding: 0 0 4px 4px;
+        display: inline-block;
+      }
+      input {
+        padding: 4px;
+        width: 100%;
+        background-color: #ffffff;
+        border: 1px solid #00000052;
+      }
+    }
   }
   .line-btn {
     position: relative;

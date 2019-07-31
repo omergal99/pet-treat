@@ -16,16 +16,16 @@
     right: 0;
     // right: -80vw;
     transition: all 0.3s ease;
-    animation-name: slideRight;
-    animation-duration: .4s;
-    @keyframes slideRight {
-      0% {
-        right: -80vw;
-      }
-      100% {
-        right: 0;
-      }
-    }
+    // animation-name: slideRight;
+    // animation-duration: .4s;
+    // @keyframes slideRight {
+    //   0% {
+    //     right: -80vw;
+    //   }
+    //   100% {
+    //     right: 0;
+    //   }
+    // }
     .head {
       background-color: #5959da;
       padding: 4px;

@@ -113,10 +113,10 @@ class ChatForm extends Component {
       return <div key={dogDetail._id} onClick={ev => { ev.stopPropagation(); this.contentToggle(dogDetail, idx) }}
         style={{ gridColumn: `${idx + 1}/${idx + 1}` }}>
         <div className="wrap-img" style={{ background: this.state.msg.dogOptions[idx] ? 'green' : '' }}>
-          <img src={dogDetail.img} alt={`${dogDetail.imgName}`} />
+          <img src={dogDetail.img} alt={`${dogDetail.text}`} />
         </div>
         <div className="name">
-          <label>{dogDetail.imgName}</label>
+          <label>{dogDetail.text}</label>
         </div>
       </div>
     });
@@ -131,7 +131,7 @@ class ChatForm extends Component {
           </div>
         }
         {level === 3 &&
-          <div className="level" style={{ height: level === 3 ? '128px' : '' }}>
+          <div className="level">
             <label>Message Content</label>
             <div className="table-3">
               {dogList}
@@ -139,10 +139,12 @@ class ChatForm extends Component {
           </div>
         }
         {level === 4 &&
-          <div className="level" style={{ height: level === 4 ? 'auto' : '' }}>
+          <div className="level">
+            <label style={{ textAlign: 'left' }}>Something to add?</label>
             <div className="table-4" >
-              <label>Something to add?</label>
-              <input value={this.state.msg.text} onChange={this.updateText.bind(this)} type="text" />
+              <input type="text" placeholder="Write a comment"
+              value={this.state.msg.text} 
+              onChange={this.updateText.bind(this)} />
             </div>
           </div>
         }

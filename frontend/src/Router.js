@@ -41,8 +41,10 @@ class Router extends Component {
 
               <Route exact path="/" render={() => <HomePage currUser={this.props.currUser} />} />
               <Route exact path="/chat" render={() =>
-                <Chat msgs={this.props.msgs} userTyping={this.props.userTyping} currUser={this.props.currUser} 
-                dog={this.props.dog}/>
+                <Chat msgs={this.props.msgs}
+                  userTyping={this.props.userTyping}
+                  currUser={this.props.currUser}
+                  dog={this.props.dog} />
               } />
               <Route exact path="/signup" component={SignupPage} />
             </Switch>

@@ -5,20 +5,24 @@ const mongoService = require('./mongo-service')
 function addUser(userNamePass) {
   var user = {
     name: userNamePass.name,
-    code: userNamePass.pass,
+    code: userNamePass.code,
     isAdmin: false,
     img: '',
     dogId: '',
   }
-  return mongoService.connect()
-    .then(db => db.collection('users').updateOne(
-      { name: userNamePass.name },
-      { $set: user },
-      { upsert: true }))
-    .then(res => {
-      user._id = res.upsertedId._id
-      return user
-    })
+  var copyUser = JSON.parse(JSON.stringify(user))
+  // return mongoService.connect()
+  //   .then(db => db.collection('users').updateOne(
+  //     { name: userNamePass.name },
+  //     { $set: user },
+  //     { upsert: true }))
+  //   .then(res => {
+  //     user._id = res.upsertedId._id
+  //     return user
+  //   })
+  delete copyUser.code;
+  delete copyUser.isAdmin;
+  return Promise.resolve(copyUser);
 }
 
 module.exports = {

@@ -14,15 +14,15 @@ function usersRoute(app) {
 
   // CREATE
   app.post(`/users/signup`, (req, res) => {
-    const userNamePass = req.body
-    console.log('userNamePass', userNamePass)
-    // userNamePass.name.toLowerCase()
-    // userService.addUser(userNamePass)
-    //   .then(user => {
-    //     req.session.loggedInUser = user
-    //     res.json(user)
-    //   })
-    return res.json(userNamePass)
+    const userNameCode = req.body
+    // console.log('userNameCode', userNameCode)
+    userNameCode.name.toLowerCase()
+    usersService.addUser(userNameCode)
+      .then(user => {
+        req.session.loggedInUser = user
+        res.json(user)
+      })
+    // return res.json(userNameCode)
   })
 
 }

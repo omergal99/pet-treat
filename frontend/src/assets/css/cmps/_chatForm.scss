@@ -4,10 +4,12 @@
   bottom: 0;
   margin-bottom: 45px;
   .level {
-    height: 208px;
+    height: auto;
+    border-top: 1px solid #abdbfe6e;
+    box-shadow: 0px 3px 6px 0px #00374d;
     background: linear-gradient(0.11turn, rgb(154, 209, 247), rgb(216, 247, 255));
     & > label {
-      padding: 4px 0 0 0;
+      padding: 4px 0 4px 4px;
       display: block;
       font-weight: bold;
     }
@@ -19,7 +21,7 @@
       }
     }
     .table-2 {
-      height: calc(100% - 22px);
+      padding: 0px 0px 6px 0px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
@@ -35,7 +37,7 @@
     .table-3 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      height: calc(100% - 22px);
+      padding: 0px 0px 6px 0px;
       & > div {
         display: flex;
         align-items: center;
@@ -47,17 +49,15 @@
       }
     }
     .table-4 {
-      padding: 10px 6px;
-      text-align: left;
-      label{
-        padding: 0 0 4px 4px;
-        display: inline-block;
-      }
+      padding: 0px 4px 8px 4px;
       input {
-        padding: 4px;
+        border-radius: 4px;
+        padding: 4px 6px 4px 6px;
         width: 100%;
-        background-color: #ffffff;
-        border: 1px solid #00000052;
+        background-color: #f2eff5;
+        border: 1px solid #00000000;
+        font-size: 1.2em;
+        color: #001010;
       }
     }
   }

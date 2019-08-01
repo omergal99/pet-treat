@@ -8,32 +8,37 @@ const USER_STORAGE = 'curr user';
 
 function getUser() {
   var storeUser = StorageService.load(USER_STORAGE);
-  if(storeUser){
+  if (storeUser) {
     return Promise.resolve(storeUser);
-  }else{
+  } else {
     return Promise.resolve({ name: '', code: '' });
   }
   // return Promise.resolve(user);
 }
 
 // function signup(name) {
-  // var currUser = StorageService.load(USER_STORAGE);
-  // return Promise.resolve(currUser);
-  // return Promise.resolve(name);
+// var currUser = StorageService.load(USER_STORAGE);
+// return Promise.resolve(currUser);
+// return Promise.resolve(name);
 // }
 
 function signup(newUser) {
   return HttpService.post(`${USER_URL}/signup`, newUser)
     .then(res => {
       StorageService.store(USER_STORAGE, res.data);
-      console.log(res.data)
+      // console.log(res.data)
       return res.data;
     })
 }
 
+function logout() {
+  StorageService.store(USER_STORAGE, '');
+}
+
 export default {
   getUser,
-  signup
+  signup,
+  logout
 }
 
 // function _randomName(size = 4) {

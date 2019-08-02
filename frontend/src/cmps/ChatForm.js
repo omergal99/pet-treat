@@ -149,16 +149,8 @@ class ChatForm extends Component {
           <div className="level">
             <label style={{ textAlign: 'left' }}>Something to add?</label>
             <div className="table-4" >
-
-              {/* <input type="text" placeholder="Write a comment"
-                value={this.state.msg.text}
-                onChange={this.updateText.bind(this)} /> */}
-
               <textarea type="text" placeholder="Write a comment"
-                onChange={this.updateText.bind(this)}
-                value={this.state.msg.text}
-              ></textarea>
-
+                onChange={this.updateText.bind(this)} value={this.state.msg.text}></textarea>
             </div>
           </div>
         }

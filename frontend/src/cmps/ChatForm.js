@@ -8,7 +8,7 @@ class ChatForm extends Component {
   }
 
   state = {
-    level: 4,
+    level: 1,
     buttonTexts: ['Make New Message', '', 'Continue', 'Send!'],
     msg: {
       fromUserName: '',
@@ -92,6 +92,13 @@ class ChatForm extends Component {
     var msg = this.state.msg;
     msg.text = ev.target.value;
     this.setState({ msg });
+    // AUTO CHANGE HEIGHT OF TEXTAREA
+    ev.target.style.height = '60px';
+    if ((ev.target.scrollHeight + 2) <= 128) {
+      ev.target.style.height = (ev.target.scrollHeight + 2) + 'px';
+    } else {
+      ev.target.style.height = '128px';
+    }
   }
 
   render() {
@@ -142,9 +149,16 @@ class ChatForm extends Component {
           <div className="level">
             <label style={{ textAlign: 'left' }}>Something to add?</label>
             <div className="table-4" >
-              <input type="text" placeholder="Write a comment"
-              value={this.state.msg.text} 
-              onChange={this.updateText.bind(this)} />
+
+              {/* <input type="text" placeholder="Write a comment"
+                value={this.state.msg.text}
+                onChange={this.updateText.bind(this)} /> */}
+
+              <textarea type="text" placeholder="Write a comment"
+                onChange={this.updateText.bind(this)}
+                value={this.state.msg.text}
+              ></textarea>
+
             </div>
           </div>
         }
@@ -152,14 +166,7 @@ class ChatForm extends Component {
           {btnText ?
             <button className="level-btn" onClick={this.levelUp.bind(this)}>{btnText}</button>
             :
-            <button className="level-btn" onClick={this.initState.bind(this)}
-              style={{
-                backgroundColor: '#ff7676',
-                color: 'black',
-                fontSize: '1em',
-                border: '1.5px solid black'
-              }}
-            >Cancel</button>
+            <button className="level-btn cancel" onClick={this.initState.bind(this)}>Cancel</button>
           }
           {level > 2 &&
             <button className="back-btn" onClick={() => this.setState({ level: --this.state.level })}>BACK</button>

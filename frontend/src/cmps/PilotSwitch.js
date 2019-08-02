@@ -4,30 +4,30 @@ function PilotSwitch({ isChecked }) {
 
   return (
     <div className="pilot-switch">
-      <span class="switch">
-        <span class="switch-border1">
-          <span class="switch-border2">
+      <span className="switch">
+        <span className="switch-border1">
+          <span className="switch-border2">
             <input id="switch1" type="checkbox" defaultChecked={isChecked} />
             <label for="switch1"></label>
-            <span class="switch-top"></span>
-            <span class="switch-shadow"></span>
-            <span class="switch-handle"></span>
-            <span class="switch-handle-left"></span>
-            <span class="switch-handle-right"></span>
-            <span class="switch-handle-top"></span>
-            <span class="switch-handle-bottom"></span>
-            <span class="switch-handle-base"></span>
-            <span class="switch-led switch-led-green">
-              <span class="switch-led-border">
-                <span class="switch-led-light">
-                  <span class="switch-led-glow"></span>
+            <span className="switch-top"></span>
+            <span className="switch-shadow"></span>
+            <span className="switch-handle"></span>
+            <span className="switch-handle-left"></span>
+            <span className="switch-handle-right"></span>
+            <span className="switch-handle-top"></span>
+            <span className="switch-handle-bottom"></span>
+            <span className="switch-handle-base"></span>
+            <span className="switch-led switch-led-green">
+              <span className="switch-led-border">
+                <span className="switch-led-light">
+                  <span className="switch-led-glow"></span>
                 </span>
               </span>
             </span>
-            <span class="switch-led switch-led-red">
-              <span class="switch-led-border">
-                <span class="switch-led-light">
-                  <span class="switch-led-glow"></span>
+            <span className="switch-led switch-led-red">
+              <span className="switch-led-border">
+                <span className="switch-led-light">
+                  <span className="switch-led-glow"></span>
                 </span>
               </span>
             </span>

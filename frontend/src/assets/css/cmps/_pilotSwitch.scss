@@ -1,7 +1,11 @@
 .pilot-switch {
+  font-size: 8px;
+  font-family: arial, verdana, sans-serif;
+  text-align: center;
+
   .switch {
     display: inline-block;
-    margin: 10em 2em;
+    margin: 7em 1em;
     position: relative;
     border-radius: 3.5em;
     -webkit-box-shadow: 0 0 0.5em rgba(255, 255, 255, 0.2);
@@ -323,8 +327,10 @@
 
   .switch-led-green {
     top: -5em;
-    border-top: 0.1em solid rgba(0, 161, 75, 0.5);
-    border-bottom: 0.1em solid rgba(255, 255, 255, 0.25);
+    border-top: 0.1em solid rgb(0, 0, 0);
+    border-bottom: 0.1em solid rgb(0, 0, 0);
+    border-right: 0.1em solid rgb(0, 0, 0);
+    border-left: 0.1em solid rgb(0, 0, 0);
   }
 
   .switch-led-green .switch-led-light {
@@ -334,8 +340,10 @@
 
   .switch-led-red {
     bottom: -5em;
-    border-top: 0.1em solid rgba(237, 28, 36, 0.2);
-    border-bottom: 0.1em solid rgba(255, 255, 255, 0.25);
+    border-top: 0.1em solid rgb(0, 0, 0);
+    border-bottom: 0.1em solid rgb(0, 0, 0);
+    border-right: 0.1em solid rgb(0, 0, 0);
+    border-left: 0.1em solid rgb(0, 0, 0);
     -webkit-box-shadow: 0 0 3em rgb(237, 28, 36);
     -moz-box-shadow: 0 0 3em rgb(237, 28, 36);
     box-shadow: 0 0 3em rgb(237, 28, 36);

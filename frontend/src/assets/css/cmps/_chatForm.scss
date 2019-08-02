@@ -50,7 +50,8 @@
     }
     .table-4 {
       padding: 0px 4px 8px 4px;
-      input {
+      textarea {
+        height: 60px;
         border-radius: 4px;
         padding: 4px 6px 4px 6px;
         width: 100%;
@@ -80,6 +81,12 @@
       border-radius: 6px;
       &:hover {
         background-color: #444338;
+      }
+      &.cancel {
+        background-color: #ff7676;
+        color: black;
+        font-size: 1em;
+        border: 1.5px solid black;
       }
     }
     .back-btn {

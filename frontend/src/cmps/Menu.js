@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import actions from '../store/actions';
-import PilotSwitch from './PilotSwitch';
+// import PilotSwitch from './PilotSwitch';
 
 function Menu({ isOpen, onClose }) {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function Menu({ isOpen, onClose }) {
       <div>
         <div className="cover" style={{ display: isOpen ? '' : 'none' }} onClick={closeMenu.bind(this)}></div>
 
-        <div className="menu" style={{ right: isOpen ? '' : '-80vw' }}>
+        <div className="menu" style={{ right: isOpen ? '' : '-82vw' }}>
           <div className="head flex flex-col">
             <div className="flex relative">
               <div className="dog-img">
@@ -53,7 +53,7 @@ function Menu({ isOpen, onClose }) {
             </ul>
           </div>
 
-          <PilotSwitch isChecked="true" />
+          {/* <PilotSwitch isChecked="true" /> */}
         </div>
       </div>
     </div>

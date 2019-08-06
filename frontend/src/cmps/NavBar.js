@@ -25,14 +25,13 @@ function NavBar({ currUserName }) {
       <ul>
         {!currUserName &&
           <div className="link">
-            <NavLink to="/"
-              activeClassName="activeRoute">Sign Up</NavLink>
+            <NavLink to="/" activeClassName="activeRoute">Sign Up</NavLink>
           </div>
         }
         {currUserName &&
           <div className="link flex space-between align-center">
-            <NavLink exact to="/" activeClassName="activeRoute">Home</NavLink>
-            <NavLink to="/chat" activeClassName="activeRoute">Chat</NavLink>
+            <NavLink exact to="/" activeClassName="activeRoute">LOGO</NavLink>
+            {/* <NavLink to="/chat" activeClassName="activeRoute">Chat</NavLink> */}
             {/* <NavLink to="/signup" activeClassName="activeRoute" onClick={logout.bind(this)}>Logout</NavLink> */}
 
             <li className="nav-options" onClick={toggleMenu.bind(this)}>

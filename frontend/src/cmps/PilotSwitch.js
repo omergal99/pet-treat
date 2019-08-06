@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function PilotSwitch({ isChecked }) {
 
   return (
@@ -8,7 +9,7 @@ function PilotSwitch({ isChecked }) {
         <span className="switch-border1">
           <span className="switch-border2">
             <input id="switch1" type="checkbox" defaultChecked={isChecked} />
-            <label for="switch1"></label>
+            <label htmlFor="switch1"></label>
             <span className="switch-top"></span>
             <span className="switch-shadow"></span>
             <span className="switch-handle"></span>

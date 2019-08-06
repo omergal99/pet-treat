@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 45px;
+  height: 60px;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@
     }
     a {
       display: inline-block;
-      line-height: 45px;
+      line-height: 60px;
       height: 100%;
       min-width: 40px;
       font-size: 0.8em;
@@ -45,10 +45,10 @@
     }
     .nav-options {
       list-style: none;
-      color: white;
-      width: 52px;
       cursor: pointer;
-      background-color: rgba(0, 33, 76, 0.8);
+      padding: 0 6px;
+      height: 60px;
+      line-height: 85px;
       &:hover {
         background-color: rgba(0, 33, 76, 0.8);
       }

@@ -6,7 +6,7 @@ import actions from '../store/actions';
 import { Formik, Form, Field } from 'formik';
 // import { withRouter } from 'react-router-dom'; // Not neccerry
 
-class SignupPage extends Component {
+class Signup extends Component {
 
   componentDidMount() {
     // console.log(this.props)
@@ -47,7 +47,7 @@ class SignupPage extends Component {
               <div className="user-details">
                 <div style={{
                   textAlign: 'left', paddingLeft: '8px', fontWeight: 'bold', color: '#444444'
-                }}>Name</div>
+                }}>Dog Name</div>
                 {/* <Field name="name" autoFocus={(window.innerWidth > 500)} type="text"
                   placeholder="Write your name" /> */}
                 <Field name="name" placeholder="Write your name"
@@ -95,6 +95,6 @@ function mapStateToProps(state) {
   }
 }
 
-// export default SignupPage
-export default connect(mapStateToProps, actions)(SignupPage)
+// export default Signup
+export default connect(mapStateToProps, actions)(Signup)
 

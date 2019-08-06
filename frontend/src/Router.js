@@ -8,9 +8,12 @@ import store from './store/AppStore';
 import actions from './store/actions';
 
 // PAGES
-import HomePage from './pages/HomePage';
+import Home from './pages/Home';
 import Chat from './pages/Chat';
-import SignupPage from './pages/SignupPage';
+import Gallery from './pages/Gallery';
+import ForbiddenFood from './pages/ForbiddenFood';
+import DogLove from './pages/DogLove';
+import Signup from './pages/Signup';
 
 //CMPS
 import NavBar from './cmps/NavBar'
@@ -36,17 +39,20 @@ class Router extends Component {
           <div className="route">
             <Switch>
               {!currUserName &&
-                <Route path="/" component={SignupPage} />
+                <Route path="/" component={Signup} />
               }
 
-              <Route exact path="/" render={() => <HomePage currUser={this.props.currUser} />} />
+              <Route exact path="/" render={() => <Home currUser={this.props.currUser} />} />
               <Route exact path="/chat" render={() =>
                 <Chat msgs={this.props.msgs}
                   userTyping={this.props.userTyping}
                   currUser={this.props.currUser}
                   dog={this.props.dog} />
               } />
-              <Route exact path="/signup" component={SignupPage} />
+              <Route exact path="/gallery" component={Gallery} />
+              <Route exact path="/forbidden-food" component={ForbiddenFood} />
+              <Route exact path="/dog-love" component={DogLove} />
+              <Route exact path="/signup" component={Signup} />
             </Switch>
           </div>
         </div>

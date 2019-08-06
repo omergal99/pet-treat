@@ -1,34 +1,37 @@
-/**************** Pages ****************/
-
-/********** Home Page **********/
+/********** Home**********/
 
 .home {
-  margin: 10px 0 0 0;
-  .header {
-    margin: 0 0 6px 0;
-    padding: 0 10px;
-    background-color: $clr4;
-    .balance,
-    .rate {
-      min-width: 200px;
-      width: 50%;
-      text-align: left;
-      padding: 4px;
-      .order {
-        width: 70%;
-        margin: 0 auto;
-        text-align: left;
-      }
-    }
+  overflow-x: auto;
+  .open-img {
+    min-height: 200px;
+    height: 50vw;
+    max-height: 100vh;
+    background-color: #7f7f7f;
+    background-image: url("../../assets/img/dog/messi.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: unset;
+    background-position: center;
   }
-  .btn-oded {
-    margin: 30px 0;
-    input {
-      min-width: 180px;
-      min-height: 50px;
-      font-size: 1em;
-      border: 2px solid #111;
-      border: 2px solid gray;
+  .grid {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 12px;
+    a {
+      height: auto;
+      background-color: #bcbcbc63;
+      border-radius: 4px;
+      padding: 2px;
+      img {
+        padding: 4px 0 0 0;
+        height: 100px;
+        border-radius: 20%;
+      }
+      label {
+        display: block;
+        color: #260000;
+      }
     }
   }
 }

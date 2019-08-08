@@ -1,6 +1,6 @@
 {
-  "short_name": "my dog",
-  "name": "my dog app",
+  "short_name": "My Dog",
+  "name": "My Dog!",
   "icons": [
     {
       "src": "dog.png",

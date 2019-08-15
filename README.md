@@ -1,6 +1,6 @@
 # pet-treat
 
-An family aplication for my dog messi
+An family aplication for my dog messi: https://gal-family.herokuapp.com/
 
 ## Explanation - store with Redux
 

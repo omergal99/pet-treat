@@ -16,6 +16,8 @@ class ChatForm extends Component {
       dogOptions: [false, false, false, false],
       dateCreated: null
     },
+    familyList: [],
+    dogList: [],
     dogDetails: [
       {
         _id: 301,
@@ -46,12 +48,15 @@ class ChatForm extends Component {
 
   componentDidMount() {
     // console.log(this.props.family)
+    this.setFamilyList();
+    this.setDogList();
   }
 
   levelUp() {
     let level = this.state.level;
-    if (level === 1 || level === 3 || level === 4) {
-      this.setState({ level: ++level });
+    if (level === 1 || level === 2 || level === 3 || level === 4) {
+      level = level + 1;
+      this.setState({ level });
     }
     if (level === 5) {
       var msg = this.state.msg;
@@ -62,6 +67,11 @@ class ChatForm extends Component {
       }
       this.initState()
     }
+  }
+
+  levelDown() {
+    let level = this.state.level - 1;
+    this.setState({ level });
   }
 
   initState() {
@@ -79,16 +89,18 @@ class ChatForm extends Component {
   personSelected(name) {
     var msg = this.state.msg;
     msg.fromUserName = name;
-    this.setState({ level: ++this.state.level, msg });
+    this.setState({ msg });
+    this.levelUp();
   }
 
-  contentToggle(dogDetail, idx) {
+  msgContentChanged(dogDetail, idx) {
     var msg = this.state.msg;
     msg.dogOptions[idx] = msg.dogOptions[idx] ? false : dogDetail;
     this.setState({ msg });
+    this.setDogList();
   }
 
-  updateText(ev) {
+  updateTextHeight(ev) {
     var msg = this.state.msg;
     msg.text = ev.target.value;
     this.setState({ msg });
@@ -101,11 +113,9 @@ class ChatForm extends Component {
     }
   }
 
-  render() {
-    var level = this.state.level;
-    var btnText = this.state.buttonTexts[this.state.level - 1];
-    var grid4 = ['1 / 1 / 1 / 1', '1 / 2 / 1 / 2', '2 / 1 / 2 / 1', '2 / 2 / 2 / 2'];
-    var familyList = this.props.family.map((person, idx) => {
+  setFamilyList() {
+    const grid4 = ['1 / 1 / 1 / 1', '1 / 2 / 1 / 2', '2 / 1 / 2 / 1', '2 / 2 / 2 / 2'];
+    const familyList = this.props.family.map((person, idx) => {
       return <div key={person.userId} onClick={ev => { ev.stopPropagation(); this.personSelected(person.userName) }}
         style={{ gridArea: `${grid4[idx]}` }}>
         <div className="wrap-img" >
@@ -116,8 +126,11 @@ class ChatForm extends Component {
         </div>
       </div>
     });
-    var dogList = this.state.dogDetails.map((dogDetail, idx) => {
-      return <div key={dogDetail._id} onClick={ev => { ev.stopPropagation(); this.contentToggle(dogDetail, idx) }}
+    this.setState({ familyList });
+  }
+  setDogList() {
+    const dogList = this.state.dogDetails.map((dogDetail, idx) => {
+      return <div key={dogDetail._id} onClick={ev => { ev.stopPropagation(); this.msgContentChanged(dogDetail, idx) }}
         style={{ gridColumn: `${idx + 1}/${idx + 1}` }}>
         <div className="wrap-img" style={{ background: this.state.msg.dogOptions[idx] ? 'green' : '' }}>
           <img src={dogDetail.img} alt={`${dogDetail.text}`} />
@@ -127,13 +140,20 @@ class ChatForm extends Component {
         </div>
       </div>
     });
+    this.setState({ dogList });
+  }
+
+  render() {
+    var level = this.state.level;
+    var btnText = this.state.buttonTexts[this.state.level - 1];
+    // console.log(this.state.level);
     return (
       <div className="form-levels">
         {level === 2 &&
           <div className="level">
             <label>Who are you?</label>
             <div className="table-2">
-              {familyList}
+              {this.state.familyList}
             </div>
           </div>
         }
@@ -141,7 +161,7 @@ class ChatForm extends Component {
           <div className="level">
             <label>Message Content</label>
             <div className="table-3">
-              {dogList}
+              {this.state.dogList}
             </div>
           </div>
         }
@@ -150,7 +170,7 @@ class ChatForm extends Component {
             <label style={{ textAlign: 'left' }}>Something to add?</label>
             <div className="table-4" >
               <textarea type="text" placeholder="Write a comment"
-                onChange={this.updateText.bind(this)} value={this.state.msg.text}></textarea>
+                onChange={this.updateTextHeight.bind(this)} value={this.state.msg.text}></textarea>
             </div>
           </div>
         }
@@ -161,7 +181,7 @@ class ChatForm extends Component {
             <button className="level-btn cancel" onClick={this.initState.bind(this)}>Cancel</button>
           }
           {level > 2 &&
-            <button className="back-btn" onClick={() => this.setState({ level: --this.state.level })}>BACK</button>
+            <button className="back-btn" onClick={this.levelDown.bind(this)}>BACK</button>
           }
         </div>
       </div>

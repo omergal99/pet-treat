@@ -49,9 +49,9 @@ class Chat extends Component {
     var userName = this.props.currUser;
     var userTyping = this.props.userTyping;
     var massages = this.props.msgs;
+    // console.log('render') // TODO: fix render problem
     const chat = massages.map((msg, idx) => (
-      <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}
-      >
+      <li className={userName === msg.fromUserName ? 'own' : 'else'} key={idx}>
         <label className="user">{msg.fromUserName}</label>
         <label className="date">{`${new Date(Number((msg.dateCreated))).toLocaleString()}`}</label>
         {msg.dogOptions &&

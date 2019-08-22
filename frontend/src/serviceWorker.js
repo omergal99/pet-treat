@@ -20,6 +20,14 @@ const isLocalhost = Boolean(
   )
 );
 
+var CACHE_NAME = 'my-site-cache-v1';
+var urlsToCache = [
+  '/',
+  './serviceWorker/',
+  './serviceWorker/index.js',
+  './serviceWorker/app.js'
+];
+
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -55,10 +63,8 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then(registration => {
-      registration.onupdatefound = () => {
+  navigator.serviceWorker.register(swUrl)
+    .then(registration => { registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
@@ -83,6 +89,7 @@ function registerValidSW(swUrl, config) {
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
+              console.log('Content is cached for offline use22.');
 
               // Execute callback
               if (config && config.onSuccess) {
@@ -133,3 +140,20 @@ export function unregister() {
     });
   }
 }
+
+window.self.addEventListener('install', event => {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      alert('addEventListener install');
+      console.log('Opened cache');
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
+
+window.self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+  );
+});

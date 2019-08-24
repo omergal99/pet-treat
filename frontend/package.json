@@ -18,16 +18,15 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "web-push": "^3.3.5"
   },
   "scripts": {
     "serve": "react-scripts serve",
     "start": "react-scripts start",
     "build": "react-scripts build && move build ../backend/public",
     "test": "jest",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -20,13 +20,6 @@ const isLocalhost = Boolean(
   )
 );
 
-var CACHE_NAME = 'my-site-cache-v1';
-var urlsToCache = [
-  '/',
-  './serviceWorker/',
-  './serviceWorker/index.js',
-  './serviceWorker/app.js'
-];
 
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
@@ -64,12 +57,13 @@ export function register(config) {
 
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker.register(swUrl)
-    .then(registration => { registration.onupdatefound = () => {
+    .then(registration => {
+      registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
         }
-        installingWorker.onstatechange = () => {
+        installingWorker.onstatechange = async () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,
@@ -141,19 +135,110 @@ export function unregister() {
   }
 }
 
-window.self.addEventListener('install', event => {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      alert('addEventListener install');
-      console.log('Opened cache');
-      return cache.addAll(urlsToCache);
-    })
-  );
-});
+// var CACHE_NAME = 'my-site-cache-v1';
+// var urlsToCache = [
+//   '/',
+//   '/forbidden-food',
+//   './serviceWorker/forbidden-food',
+//   './serviceWorker/',
+//   './serviceWorker/index.js',
+//   './serviceWorker/app.js'
+// ];
 
-window.self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-  );
-});
+// async function saveSubscription(subscription) {
+//   const SERVER_URL = "http://localhost:3000/save-subscription";
+//   const response = await fetch(SERVER_URL, {
+//     method: "post",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(subscription)
+//   });
+//   return response.json();
+// };
+
+// function urlB64ToUint8Array(base64String) {
+//   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+//   const base64 = (base64String + padding)
+//     .replace(/\-/g, "+")
+//     .replace(/_/g, "/");
+//   const rawData = atob(base64);
+//   const outputArray = new Uint8Array(rawData.length);
+//   for (let i = 0; i < rawData.length; ++i) {
+//     outputArray[i] = rawData.charCodeAt(i);
+//   }
+//   return outputArray;
+// };
+
+// /* eslint-disable-next-line no-restricted-globals */
+// self.addEventListener('install', async event => {
+//   // Perform install steps
+//   event.waitUntil(
+//     caches.open(CACHE_NAME).then(cache => {
+//       alert('addEventListener install');
+//       console.log('Opened cache');
+//       return cache.addAll(urlsToCache);
+//     })
+//   );
+//   const applicationServerKey = urlB64ToUint8Array(
+//     "BHaWtColOLuUSXSfNcqASqQ7QCKQvcBH9N9KBUgoXN4ihfrLaY_7vWPQ9TjKYyghAdAE-H34S4mbwH-jPu_hyaM"
+//   );
+//   const options = { applicationServerKey, userVisibleOnly: true };
+// /* eslint-disable-next-line no-restricted-globals */
+//   const subscription = await self.registration.pushManager.subscribe(options);
+//   console.log(subscription);
+//   saveSubscription(subscription).then((response) => {
+//     console.log(response);
+//   })
+// });
+
+// /* eslint-disable-next-line no-restricted-globals */
+// self.addEventListener('activate', event => {
+//   console.log('Finally active. Ready to start serving content!');
+//   // var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
+
+//   // event.waitUntil(
+//   //   caches.keys().then((cacheNames) => {
+//   //     return Promise.all(
+//   //       cacheNames.map((cacheName) => {
+//   //         if (cacheWhitelist.indexOf(cacheName) === -1) {
+//   //           return caches.delete(cacheName);
+//   //         }
+//   //       })
+//   //     );
+//   //   })
+//   // );
+// });
+
+// /* eslint-disable-next-line no-restricted-globals */
+// self.addEventListener('fetch', event => {
+//   event.respondWith(
+//     caches.match(event.request)
+//       .then(function (response) {
+//         // Cache hit - return response
+//         if (response) {
+//           return response;
+//         }
+//         return fetch(event.request);
+//       }
+//       )
+//   );
+// });
+
+// /* eslint-disable-next-line no-restricted-globals */
+// self.addEventListener('push', event => {
+//   console.log(event.data.json())
+//   console.log(event)
+//   var title = 'Yay a message.';
+//   var body = 'We have received a push message.';
+//   var icon = '/images/smiley.svg';
+//   var tag = 'simple-push-example-tag';
+//   event.waitUntil(
+//     /* eslint-disable-next-line no-restricted-globals */
+//     self.registration.showNotification(title, {
+//       body: body,
+//       icon: icon,
+//       tag: tag
+//     })
+//   );
+// });

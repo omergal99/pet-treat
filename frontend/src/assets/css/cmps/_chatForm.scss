@@ -1,12 +1,14 @@
 .form-levels {
   position: fixed;
+  max-width: 800px;
   width: 100%;
   bottom: 0;
   margin-bottom: 60px;
   .level {
     height: auto;
     border-top: 1px solid #abdbfe6e;
-    box-shadow: 0px 3px 6px 0px #00374d;
+    // border-left: 1px solid #33556acf;
+    // border-right: 1px solid #33556acf;
     background: linear-gradient(0.11turn, rgb(154, 209, 247), rgb(216, 247, 255));
     & > label {
       padding: 4px 0 4px 4px;
@@ -63,7 +65,8 @@
     }
   }
   .line-btn {
-    max-width: 800px;
+    // border-left: 1px solid #33556acf;
+    // border-right: 1px solid #33556acf;
     position: relative;
     z-index: 10;
     background: linear-gradient(0.11turn, rgb(87, 167, 221), rgb(190, 242, 255));

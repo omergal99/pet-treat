@@ -73,9 +73,9 @@ class Chat extends Component {
     return (
       <section className="chat">
 
-        <h1>{userName}, Welcome to Chat!</h1>
+        {/* <h1>{userName}, Welcome to Chat!</h1> */}
 
-        <div className="type-area">{userTyping ? `${userTyping} typing...` : ''}</div>
+        {/* <div className="type-area">{userTyping ? `${userTyping} typing...` : ''}</div> */}
 
         {family &&
           <ChatForm family={family} onSendMsg={this.sendingMsg.bind(this)} />

@@ -16,7 +16,7 @@ const usersRoute = require('./routes/users-route')
 const pushService = require('./services/push-service')
 
 app.use(cors({
-  origin: ['http://localhost:3002'],
+  origin: ['http://localhost:3000'],
   credentials: true // enable set cookie
 }));
 

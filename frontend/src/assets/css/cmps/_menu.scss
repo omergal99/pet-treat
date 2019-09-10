@@ -11,6 +11,7 @@
     position: fixed;
     height: calc(100vh - 60px);
     width: 80vw;
+    max-width: 500px;
     background-color: #d8d8e0;
     top: 0;
     right: 0;
@@ -73,18 +74,18 @@
       }
       .close {
         cursor: pointer;
-        padding: 2px;
+        padding: 3px 6px;
         font-size: 24px;
-        height: 30px;
-        width: 30px;
+        height: 32px;
+        width: 32px;
         position: absolute;
         top: 4px;
         right: 4px;
         box-shadow: 0 0 3px 1px black;
         border-radius: 50%;
+        transition: all 0.2s;
         &:hover {
-          text-shadow: 0px 0px 3px black;
-          color: #ff7d7d;
+          background-color: #9b9bf7e0;
         }
       }
     }

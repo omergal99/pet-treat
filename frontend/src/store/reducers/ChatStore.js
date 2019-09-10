@@ -1,6 +1,5 @@
 const initialState = {
-  msgs: [{ fromUserName: 'Omer', text: 'hello', dateCreated: 1559329928517 },
-  { fromUserName: 'Amit', text: 'hii', dateCreated: 1560329960117 }],
+  msgs: [],
   userTyping: ''
 }
 

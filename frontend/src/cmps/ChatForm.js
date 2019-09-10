@@ -61,9 +61,11 @@ class ChatForm extends Component {
     if (level === 5) {
       var msg = this.state.msg;
       msg.dateCreated = Date.now();
-      const isHasOptions = msg.dogOptions.findIndex(opt => opt);
-      if (isHasOptions >= 0 || msg.text) {
+      const isOneTrue = msg.dogOptions.findIndex(opt => opt);
+      if (isOneTrue >= 0 || msg.text) {
         this.props.onSendMsg(msg);
+      }else{
+        alert('No massage to sent');
       }
       this.initState()
     }
@@ -82,7 +84,8 @@ class ChatForm extends Component {
         text: '',
         dogOptions: [false, false, false, false],
         dateCreated: null
-      }
+      }}, () => {
+      this.setDogList();
     });
   }
 

@@ -24,50 +24,9 @@ class Router extends Component {
     this.props.loadUser();
     // console.log(this.props)
     this.check();
-    const swRegistration = await this.registerServiceWorker();
-    const permission = await this.requestNotificationPermission();
-    this.showLocalNotification('This is title', 'this is the message', swRegistration);
-  }
-
-  urlB64ToUint8Array(base64String) {
-    const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-    const base64 = (base64String + padding)
-      .replace(/\-/g, "+")
-      .replace(/_/g, "/");
-    const rawData = atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
-    for (let i = 0; i < rawData.length; ++i) {
-      outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-  };
-
-  showLocalNotification(title, body, swRegistration) {
-    // const options = {
-    //   body,
-    //   // here you can add more properties like icon, image, vibrate, etc.
-    // };
-
-
-    // swRegistration.pushManager.getSubscription()
-    //   .then(function (subscription) {
-    //     console.log(subscription)
-    //   });
-
-    // const applicationServerKey = this.urlB64ToUint8Array(
-    //   "BHaWtColOLuUSXSfNcqASqQ7QCKQvcBH9N9KBUgoXN4ihfrLaY_7vWPQ9TjKYyghAdAE-H34S4mbwH-jPu_hyaM"
-    // );
-    // const options = { applicationServerKey, userVisibleOnly: true };
-    // console.log(applicationServerKey)
-
-    // swRegistration.pushManager.subscribe(options);
-
-    // console.log(swRegistration.pushManager)
-    // console.log(swRegistration.pushManager.subscribe)
-    // swRegistration.pushManager.subscribe(options);
-    // swRegistration.showNotification(title, options);
-
-
+    await this.registerServiceWorker();
+    await this.requestNotificationPermission();
+    // this.showLocalNotification('This is title', 'this is the message', swRegistration);
   }
 
   check() {
@@ -89,14 +48,9 @@ class Router extends Component {
 
   requestNotificationPermission = async () => {
     const permission = await Notification.requestPermission();
-    // value of permission can be 'granted', 'default', 'denied'
-    // granted: user has accepted the request
-    // default: user has dismissed the notification permission popup by clicking on x
-    // denied: user has denied the request.
     if (permission !== "granted") {
       throw new Error("Permission not granted for Notification");
     }
-    console.log('Permission:', permission);
     console.log('Notification permission status:', permission);
 
     if (Notification.permission === 'granted') {
@@ -111,9 +65,9 @@ class Router extends Component {
           body: 'First notification!'
         };
 
-        console.log(registration);
+        // console.log(registration);
         // registration = registration.active;
-        console.log(registration.active.state);
+        console.log('registration', registration.active.state);
 
         registration.showNotification('Hello world!', options);
       });

@@ -61,15 +61,15 @@ class Router extends Component {
       navigator.serviceWorker.getRegistration().then(registration => {
 
         // TODO 2.4 - Add 'options' object to configure the notification
-        const options = {
-          body: 'First notification!'
-        };
+        // const options = {
+        //   body: 'First notification!'
+        // };
 
         // console.log(registration);
         // registration = registration.active;
         console.log('registration', registration.active.state);
 
-        registration.showNotification('Hello world!', options);
+        // registration.showNotification('Hello world!', options);
       });
     }
   };

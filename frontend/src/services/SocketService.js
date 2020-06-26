@@ -14,6 +14,22 @@ function connectSocket() {
     console.log(`'${msg.fromUserName}' send massage: ${msg.text} at ${msg.dateCreated}`)
     // actions.addMsg(txt, from)
     store.dispatch(ChatActions.addMsg(msg))
+    console.log(msg);
+
+    if (Notification.permission === 'granted') {
+      navigator.serviceWorker.getRegistration().then(registration => {
+        const header = `${msg.fromUserName} send new message`;
+        const dogOptionsText = msg.dogOptions.reduce((acc, item) => {
+          return item ? acc ? ', ' + item.text + acc : item.text : acc;
+        }, '');
+        const options = {
+          body: dogOptionsText
+        };
+        console.log(header, options);
+        registration.showNotification(header, options);
+      });
+    }
+
   });
 
   socket.on('other user type', (user) => {

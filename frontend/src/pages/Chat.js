@@ -15,22 +15,22 @@ class Chat extends Component {
     // this.props.loadUser();
     this.props.loadDog('5d1e284dba30b944ba076387');
     this.scrollToBottom();
-    this.sendNotification();
+    // this.sendNotification();
   }
 
-  sendNotification() {
-    navigator.serviceWorker.getRegistration().then(registration => {
+  // sendNotification() {
+  //   navigator.serviceWorker.getRegistration().then(registration => {
 
-      const options = {
-        body: 'Chat notification!'
-      };
+  //     const options = {
+  //       body: 'Chat notification!'
+  //     };
 
-      console.log(registration);
-      console.log('registration', registration.active.state);
+  //     console.log(registration);
+  //     console.log('registration', registration.active.state);
 
-      registration.showNotification('Hello Chat', options);
-    });
-  }
+  //     registration.showNotification('Hello Chat', options);
+  //   });
+  // }
 
   componentDidUpdate() {
     this.scrollToBottom();
@@ -61,7 +61,6 @@ class Chat extends Component {
   }
 
   render() {
-    console.log(this.props)
     var userName = this.props.currUser;
     // var userTyping = this.props.userTyping;
     var massages = this.props.msgs;
@@ -98,7 +97,7 @@ class Chat extends Component {
         }
 
         <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>
-          {chat}
+          {chat.length ? chat : family ? 'No chat messages!': 'Loading messages...'}
           <div ref={el => this.messagesEnd = el}></div>
         </ul>
 

@@ -8,7 +8,6 @@ function loadDogs() {
 function loadDog(dogId) {
   return async (dispatch) => {
     const dog = await DogService.getById(dogId);
-    console.log(dog);
     dispatch({ type: 'replaceMsgs', payload: dog.msgHistory })
     dispatch({ type: 'updateDog', payload: dog })
   }

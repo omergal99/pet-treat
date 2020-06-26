@@ -20,7 +20,7 @@ function connectSocket() {
       navigator.serviceWorker.getRegistration().then(registration => {
         const header = `${msg.fromUserName} send new message`;
         const dogOptionsText = msg.dogOptions.reduce((acc, item) => {
-          return item ? acc ? ', ' + item.text + acc : item.text : acc;
+          return item ? acc ? acc + ', ' + item.text : item.text : acc;
         }, '');
         const options = {
           body: dogOptionsText

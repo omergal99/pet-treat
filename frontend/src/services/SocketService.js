@@ -13,9 +13,11 @@ function connectSocket() {
   socket.on('chat new msg', msg => {
     console.log(`'${msg.fromUserName}' send massage: ${msg.text} at ${msg.dateCreated}`)
     // actions.addMsg(txt, from)
-    store.dispatch(ChatActions.addMsg(msg))
+    store.dispatch(ChatActions.addMsg(msg));
     console.log(msg);
+  });
 
+  socket.on('chat new notification', msg => {
     if (Notification.permission === 'granted') {
       navigator.serviceWorker.getRegistration().then(registration => {
         const header = `${msg.fromUserName} send new message`;
@@ -29,7 +31,6 @@ function connectSocket() {
         registration.showNotification(header, options);
       });
     }
-
   });
 
   socket.on('other user type', (user) => {

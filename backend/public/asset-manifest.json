@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.701b11cd.chunk.css",
-    "main.js": "/static/js/main.76b427db.chunk.js",
+    "main.js": "/static/js/main.59c32d05.chunk.js",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "static/js/2.25ec1022.chunk.js": "/static/js/2.25ec1022.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.c88395739041172c481d32dca9e52f79.js": "/precache-manifest.c88395739041172c481d32dca9e52f79.js",
+    "precache-manifest.eecf0e7c327efcc243d5fed9b8dee0e6.js": "/precache-manifest.eecf0e7c327efcc243d5fed9b8dee0e6.js",
     "service-worker.js": "/service-worker.js",
     "static/media/App.scss": "/static/media/messi.fc6983b5.jpg"
   }

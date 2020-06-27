@@ -14,6 +14,7 @@ function socketRoute(io) {
       console.log('we got msg:', msg.text, 'from', msg.fromUserName, 'at', msg.dateCreated);
       dogsService.addMsg('5d1e284dba30b944ba076387', msg)
       io.emit('chat new msg', msg);
+      socket.broadcast.emit('chat new notification', msg);
     });
 
     socket.on('user type', (user) => {

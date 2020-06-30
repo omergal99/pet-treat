@@ -13,7 +13,7 @@ var io = require('socket.io')(http);
 const socketRoute = require('./routes/socket-route')
 const dogsRoute = require('./routes/dogs-route')
 const usersRoute = require('./routes/users-route')
-const pushService = require('./services/push-service')
+const pushRoute = require('./routes/push-route')
 
 app.use(cors({
   origin: ['http://localhost:3000'],
@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 socketRoute(io)
 dogsRoute(app)
 usersRoute(app)
-pushService()
+pushRoute(app)
 
 
 

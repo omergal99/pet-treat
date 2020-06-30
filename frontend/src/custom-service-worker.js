@@ -22,10 +22,12 @@ const isLocalhost = Boolean(
 
 
 export function register(config) {
+  console.log('SW register')
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
+      console.log('SW registar return........')
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
       // serve assets; see https://github.com/facebook/create-react-app/issues/2374
@@ -34,7 +36,9 @@ export function register(config) {
   }
 
   window.addEventListener('load', () => {
-    const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+    const swUrl = (process.env.NODE_ENV !== 'development')
+      ? `/custom-service-worker.js`
+      : `//localhost:3000/custom-service-worker.js`;
 
     if (isLocalhost) {
       // This is running on localhost. Let's check if a service worker still exists or not.
@@ -53,7 +57,87 @@ export function register(config) {
       registerValidSW(swUrl, config);
     }
   });
+
+  window.self.addEventListener('push', function (event) {
+    console.log(event);
+    console.log(event.data);
+    if (event.data) {
+      console.log('111111 This push event has data: ', event.data.text());
+    } else {
+      console.log('111111 This push event has no data.');
+    }
+
+    // const promiseChain = window.registration.showNotification('Hello, World.');
+
+    // event.waitUntil(promiseChain);
+  });
+
+  window.addEventListener('push', function (event) {
+    console.log(event);
+    console.log(event.data);
+    if (event.data) {
+      console.log('111111 This push event has data: ', event.data.text());
+    } else {
+      console.log('111111 This push event has no data.');
+    }
+
+    // const promiseChain = window.registration.showNotification('Hello, World.');
+
+    // event.waitUntil(promiseChain);
+  });
+
+  function receivePushNotification(event) {
+    console.log("[Service Worker] Push Received.");
+    const { image, tag, url, title, text } = event.data.json();
+    const options = {
+      data: url,
+      body: text,
+      icon: image,
+      vibrate: [200, 100, 200],
+      tag: tag,
+      image: image,
+      badge: "/favicon.ico",
+      actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+    };
+    event.waitUntil(navigator.registration.showNotification(title, options));
+  }
+  navigator.serviceWorker.addEventListener("push", receivePushNotification);
+
 }
+
+function receivePushNotification(event) {
+  console.log("[Service Worker] Push Received.");
+  const { image, tag, url, title, text } = event.data.json();
+  const options = {
+    data: url,
+    body: text,
+    icon: image,
+    vibrate: [200, 100, 200],
+    tag: tag,
+    image: image,
+    badge: "/favicon.ico",
+    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+  };
+  event.waitUntil(navigator.registration.showNotification(title, options));
+}
+navigator.serviceWorker.addEventListener("push", receivePushNotification);
+
+function receivePushNotification2(event) {
+  console.log("[Service Worker] Push Received.2");
+  const { image, tag, url, title, text } = event.data.json();
+  const options = {
+    data: url,
+    body: text,
+    icon: image,
+    vibrate: [200, 100, 200],
+    tag: tag,
+    image: image,
+    badge: "/favicon.ico",
+    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+  };
+  event.waitUntil(navigator.registration.showNotification(title, options));
+}
+window.addEventListener("push", receivePushNotification2);
 
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker.register(swUrl)
@@ -135,6 +219,46 @@ export function unregister() {
   }
 }
 
+
+window.self.onpush = function (event) {
+  console.log(event);
+  console.log(event.data);
+  if (event.data) {
+    console.log('111111 This push event has data: ', event.data.text());
+  } else {
+    console.log('111111 This push event has no data.');
+  }
+
+}
+
+window.self.addEventListener('push', function (e) {
+  console.log('55555555555555555555555555555');
+  var options = {
+    body: 'This notification was generated from a push!',
+    icon: 'images/example.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: '2'
+    },
+    actions: [
+      {
+        action: 'explore', title: 'Explore this new world',
+        icon: 'images/checkmark.png'
+      },
+      {
+        action: 'close', title: 'Close',
+        icon: 'images/xmark.png'
+      },
+    ]
+  };
+  e.waitUntil(
+    window.self.registration.showNotification('Hello world!', options)
+  );
+});
+
+
+
 // var CACHE_NAME = 'my-site-cache-v1';
 // var urlsToCache = [
 //   '/',
@@ -181,7 +305,7 @@ export function unregister() {
 //     })
 //   );
 //   const applicationServerKey = urlB64ToUint8Array(
-//     "BHaWtColOLuUSXSfNcqASqQ7QCKQvcBH9N9KBUgoXN4ihfrLaY_7vWPQ9TjKYyghAdAE-H34S4mbwH-jPu_hyaM"
+//     "BNtJVAmG8R8yjP6YAlKF3FT0kJkE7P4UscJpDG2sfOMqowF1qzN_HGq2fpBhTIXQAqBcAgcdks5EJcbVEo-XwOs"
 //   );
 //   const options = { applicationServerKey, userVisibleOnly: true };
 // /* eslint-disable-next-line no-restricted-globals */

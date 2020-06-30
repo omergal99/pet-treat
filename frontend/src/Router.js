@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { BrowserRouter, HashRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import HttpService from './services/HttpService';
 
 // MAIN STORE
 import store from './store/AppStore';
@@ -22,15 +23,78 @@ class Router extends Component {
 
   async componentDidMount() {
     this.props.loadUser();
-    // console.log(this.props)
+
     this.check();
     await this.registerServiceWorker();
     await this.requestNotificationPermission();
-    // this.showLocalNotification('This is title', 'this is the message', swRegistration);
+  }
+
+  registerServiceWorker = async () => {
+    const swUrl = (process.env.NODE_ENV !== 'development')
+      ? `/service-worker.js`
+      : `//localhost:3000/service-worker.js`;
+    return navigator.serviceWorker.register(swUrl)
+      .then(function (registration) {
+        console.log('Service worker successfully registered.');
+        return registration;
+      })
+      .catch(function (err) {
+        console.error('Unable to register service worker.', err);
+      });
+  };
+
+  requestNotificationPermission = async () => {
+    // if (Notification.permission !== 'default') return;
+    const permission = await Notification.requestPermission();
+    console.log('Notification permission status:', permission);
+
+    if (Notification.permission === 'granted') {
+      navigator.serviceWorker.getRegistration()
+        .then(registration => {
+          const subscribeOptions = {
+            userVisibleOnly: true,
+            applicationServerKey: this.urlBase64ToUint8Array(
+              'BNtJVAmG8R8yjP6YAlKF3FT0kJkE7P4UscJpDG2sfOMqowF1qzN_HGq2fpBhTIXQAqBcAgcdks5EJcbVEo-XwOs'
+            )
+          };
+          return registration.pushManager.subscribe(subscribeOptions);
+        })
+        .then(pushSubscription => {
+          // console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+          this.sendSubscriptionToBackEnd(pushSubscription);
+          return pushSubscription;
+        });
+    }
+
+    if (Notification.permission !== 'granted') {
+      throw new Error("Permission not granted for Notification");
+    }
+  };
+
+  sendSubscriptionToBackEnd(subscription) {
+    const url = HttpService.getUrl('push/save-subscription');
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(subscription)
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Bad status code from server.');
+        }
+
+        return response.json();
+      })
+      .then(function (responseData) {
+        if (!(responseData.data && responseData.data.success)) {
+          throw new Error('Bad response from server.');
+        }
+      });
   }
 
   check() {
-    console.log("Doing Check")
     if (!("serviceWorker" in navigator)) {
       console.log("No Service Worker support!")
       throw new Error("No Service Worker support!");
@@ -41,38 +105,20 @@ class Router extends Component {
     }
   };
 
-  registerServiceWorker = async () => {
-    const swRegistration = await navigator.serviceWorker.register('/service-worker.js');
-    return swRegistration;
-  };
+  urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
 
-  requestNotificationPermission = async () => {
-    const permission = await Notification.requestPermission();
-    if (permission !== "granted") {
-      throw new Error("Permission not granted for Notification");
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
     }
-    console.log('Notification permission status:', permission);
-
-    if (Notification.permission === 'granted') {
-      // navigator.serviceWorker.ready.then(function(registration) {
-      //   registration.showNotification('Notification with ServiceWorker');
-      // });
-      // new Notification('Notify you');
-      navigator.serviceWorker.getRegistration().then(registration => {
-
-        // TODO 2.4 - Add 'options' object to configure the notification
-        // const options = {
-        //   body: 'First notification!'
-        // };
-
-        // console.log(registration);
-        // registration = registration.active;
-        console.log('registration', registration.active.state);
-
-        // registration.showNotification('Hello world!', options);
-      });
-    }
-  };
+    return outputArray;
+  }
 
   render() {
     var currUserName = store.getState().userStore.currUser;

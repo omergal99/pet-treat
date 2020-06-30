@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import HttpService from '../services/HttpService';
 import actions from '../store/actions';
 import ChatForm from '../cmps/ChatForm';
 
@@ -13,9 +13,30 @@ class Chat extends Component {
     // console.log(this.props)
     // actions.loadUser();
     // this.props.loadUser();
-    this.props.loadDog('5d1e284dba30b944ba076387');
+    
+    // this.props.loadDog('5d1e284dba30b944ba076387');
     this.scrollToBottom();
     // this.sendNotification();
+    this.trigerNotification();
+
+  }
+
+  trigerNotification() {
+    console.log('trigerNotification');
+    const url = HttpService.getUrl('push/trigger-push-msg');
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ omer: 'check trigerNotification' })
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(function (err) {
+        console.log(err)
+      });
   }
 
   // sendNotification() {
@@ -97,7 +118,7 @@ class Chat extends Component {
         }
 
         <ul className="msg-list" style={{ overflow: isDesktop ? '' : 'scroll' }}>
-          {chat.length ? chat : family ? 'No chat messages!': 'Loading messages...'}
+          {chat.length ? chat : family ? 'No chat messages!' : 'Loading messages...'}
           <div ref={el => this.messagesEnd = el}></div>
         </ul>
 

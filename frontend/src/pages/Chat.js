@@ -14,10 +14,10 @@ class Chat extends Component {
     // actions.loadUser();
     // this.props.loadUser();
     
-    // this.props.loadDog('5d1e284dba30b944ba076387');
+    this.props.loadDog('5d1e284dba30b944ba076387');
     this.scrollToBottom();
     // this.sendNotification();
-    this.trigerNotification();
+    // this.trigerNotification();
 
   }
 
